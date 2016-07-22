@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   def index
-    render json: { places: Place.all, status: 200 }
+    render json: { places: Place.order(:id), status: 200 }
   end
 
   def show
@@ -11,48 +11,35 @@ class PlacesController < ApplicationController
     end
   end
 
-  def new
-    render json: {
-      place: Place.new
-    }
-  end
-
   def create
     place = Place.new(place_params)
     if place.save
-      redirect_to place
+      render json: { place: place, status: 200 }
     else
-      render :new
+      render json: { status: 404 }
     end
-  end
-
-  def edit
-    render json: {
-      place: Place.find(params[:id])
-    }
   end
 
   def update
     place = Place.find(params[:id])
     if place.update(place_params)
-      redirect_to place
+      render json: { place: place, status: 200 }
     else
-      render :edit
+      render json: { status: 404 }
     end
   end
 
   def destroy
     if Place.exists?(params[:id])
       Place.destroy(params[:id])
-      flash[:notice] = "Place deleted"
-      redirect_to places
+      render json: { message: "Place was successfully deleted", status: 200 }
     else
-      flash[:alert] = "There was an error - please try again"
+      render json: { status: 404}
     end
   end
 
   private
   def place_params
-    params.require(:place).permit(:name, :address, :imgurl)
+    params.require(:place).permit(:title, :address, :imgurl)
   end
 end
