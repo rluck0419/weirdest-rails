@@ -5,7 +5,7 @@ class PlacesController < ApplicationController
 
   def show
     if Place.exists?(params[:id])
-      render json: { place: Place.find(params[:id]), status: 200 }
+      render json: { place: Place.find(params[:id]) }
     else
       render json: { message: 'Place not found', status: 404 }
     end
@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
   def create
     place = Place.new(place_params)
     if place.save
-      render json: { place: place, status: 200 }
+      render json: { place: place }
     else
       render json: { status: 404 }
     end
@@ -23,7 +23,7 @@ class PlacesController < ApplicationController
   def update
     place = Place.find(params[:id])
     if place.update(place_params)
-      render json: { place: place, status: 200 }
+      render json: { place: place }
     else
       render json: { status: 404 }
     end
@@ -32,9 +32,9 @@ class PlacesController < ApplicationController
   def destroy
     if Place.exists?(params[:id])
       Place.destroy(params[:id])
-      render json: { message: "Place was successfully deleted", status: 200 }
+      render json: { message: "Place was successfully deleted" }
     else
-      render json: { status: 404}
+      render json: { status: 404 }
     end
   end
 

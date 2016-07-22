@@ -36,11 +36,9 @@ class UsersController < ApplicationController
     user = set_user
     if user.id == current_user.id
       user.destroy
-    end
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+      render json: { message: "Place was successfully deleted" }
+    else
+      render json: { status: 404 }
     end
   end
 
