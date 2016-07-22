@@ -1,11 +1,11 @@
 class PlacesController < ApplicationController
   def index
-    render locals: { students: Student.all }
+    render locals: { places: Place.all }
   end
-  
+
   def show
-    if Student.exists?(params[:id])
-      render locals: { student: Student.find(params[:id]) }
+    if Place.exists?(params[:id])
+      render locals: { place: Place.find(params[:id]) }
     else
       render html: 'Student not found', status: 404
     end
@@ -13,14 +13,14 @@ class PlacesController < ApplicationController
 
   def new
     render locals: {
-      student: Student.new
+      place: Place.new
     }
   end
 
   def create
-    student = Student.new(student_params)
-    if student.save
-      redirect_to student
+    place = Place.new(place_params)
+    if place.save
+      redirect_to place
     else
       render :new
     end
@@ -28,31 +28,31 @@ class PlacesController < ApplicationController
 
   def edit
     render locals: {
-      student: Student.find(params[:id])
+      place: Place.find(params[:id])
     }
   end
 
   def update
-    student = Student.find(params[:id])
-    if student.update(student_params)
-      redirect_to student
+    place = Place.find(params[:id])
+    if place.update(place_params)
+      redirect_to place
     else
       render :edit
     end
   end
 
   def destroy
-    if Student.exists?(params[:id])
-      Student.destroy(params[:id])
-      flash[:notice] = "Student deleted"
-      redirect_to students
+    if Place.exists?(params[:id])
+      Place.destroy(params[:id])
+      flash[:notice] = "Place deleted"
+      redirect_to places
     else
       flash[:alert] = "There was an error - please try again"
     end
   end
 
   private
-  def student_params
-    params.require(:student).permit(:name, :teacher_id)
+  def place_params
+    params.require(:place).permit(:name, :address, :imgurl)
   end
 end
