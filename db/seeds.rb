@@ -48,3 +48,7 @@ imgurl = [
 10.times do |i|
   Place.create!(title: title[i], address: address[i], imgurl: imgurl[i])
 end
+
+10.times do
+  User.create!(name: Faker::Name.name, username: Faker::App.name.gsub(' ', ''), email: 'user@example.com', password: 'password')
+end

@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    render json: { users: User.all, status: 200 }
   end
 
   def show
     if User.exists?(params[:id])
-      render json: User.find(params[:id]), status: 200
+      render json: { user: User.find(params[:id]), status: 200 }
     else
-      render json: { message: "User not found." }, status: 404
+      render json: { message: "User not found.", status: 404 }
     end
   end
 
   def new
-    @user = User.new
+    render json: { user: User.new, status: 200 }
   end
 
   def create
