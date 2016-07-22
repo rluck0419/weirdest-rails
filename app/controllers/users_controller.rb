@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     user = set_user
     if user.id == current_user.id
       user.destroy
-      render json: { message: "Place was successfully deleted" }
+      render json: { message: "User was successfully deleted." }
     else
       render json: { status: 404 }
     end
@@ -48,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password)
+    params.require(:user).permit(:name, :username, :email, :password_digest)
   end
 end
