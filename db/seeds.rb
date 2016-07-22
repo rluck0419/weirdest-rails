@@ -33,15 +33,15 @@ address = [
 ]
 
 users = %w(
-  Rob,
-  Shannon,
-  Dane,
-  Gabe,
-  Matt,
-  Princess_Haley,
-  Ahkeem,
-  user,
-  Justin,
+  Rob
+  Shannon
+  Dane
+  Gabe
+  Matt
+  Princess_Haley
+  Ahkeem
+  user
+  Justin
   Jess
 )
 
