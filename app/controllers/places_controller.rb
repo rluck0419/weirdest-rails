@@ -1,11 +1,11 @@
 class PlacesController < ApplicationController
   def index
-    render json: { places: Place.order(:id), status: 200 }
+    render json: Place.order(:id).to_json(include: :votes, methods: :vote_count)
   end
 
   def show
     if Place.exists?(params[:id])
-      render json: { place: Place.find(params[:id]) }
+      render json: Place.find(params[:id]).to_json(include: :votes, methods: :vote_count)
     else
       render json: { message: 'Place not found', status: 404 }
     end
