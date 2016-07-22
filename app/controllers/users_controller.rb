@@ -34,12 +34,12 @@ class UsersController < ApplicationController
 
   def destroy
     user = set_user
-    if user.id == current_user.id
+    # if user.id == current_user.id
       user.destroy
       render json: { message: "User was successfully deleted." }
-    else
-      render json: { status: 404 }
-    end
+    # else
+      # render json: { status: 404 }
+    # end
   end
 
   private

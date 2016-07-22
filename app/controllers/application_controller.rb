@@ -9,8 +9,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_user!
     unless user_logged_in?
-      flash[:alert] = "You must be signed in to do that."
-      redirect_to sessions_sign_in_path
+      render json: { message: "You must be logged in to do that", status: 401}
     end
   end
 end
