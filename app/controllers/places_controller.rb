@@ -1,18 +1,18 @@
 class PlacesController < ApplicationController
   def index
-    render locals: { places: Place.all }
+    render json: { places: Place.all }
   end
 
   def show
     if Place.exists?(params[:id])
-      render locals: { place: Place.find(params[:id]) }
+      render json: { place: Place.find(params[:id]) }
     else
-      render html: 'Student not found', status: 404
+      render json: { message: 'Student not found', status: 404 }
     end
   end
 
   def new
-    render locals: {
+    render json: {
       place: Place.new
     }
   end
@@ -27,7 +27,7 @@ class PlacesController < ApplicationController
   end
 
   def edit
-    render locals: {
+    render json: {
       place: Place.find(params[:id])
     }
   end
