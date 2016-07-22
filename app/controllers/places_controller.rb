@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
     if Place.exists?(params[:id])
       render json: { place: Place.find(params[:id]) }
     else
-      render json: { message: 'Student not found', status: 404 }
+      render json: { message: 'Place not found', status: 404 }
     end
   end
 

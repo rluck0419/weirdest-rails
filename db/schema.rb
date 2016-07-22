@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20160721203626) do
   create_table "places", force: :cascade do |t|
     t.string   "title",      null: false
     t.string   "address",    null: false
-    t.text     "body",       null: false
     t.string   "imgurl",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,4 +36,5 @@ ActiveRecord::Schema.define(version: 20160721203626) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
 end
