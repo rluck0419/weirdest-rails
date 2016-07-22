@@ -32,6 +32,19 @@ address = [
   '615 Red River St, Austin, Tx 78701'
 ]
 
+users = %w(
+  Rob,
+  Shannon,
+  Dane,
+  Gabe,
+  Matt,
+  Princess_Haley,
+  Ahkeem,
+  user,
+  Justin,
+  Jess
+)
+
 imgurl = [
   'http://drinks.seriouseats.com/images/2012/08/20120809-218035-midnight-cowboy-austin-steven-robbins.jpg',
   'http://whitehotphotoblog.com/wp-content/uploads/2010/09/toy_joy_03_white_hot_phoenix.jpg',
@@ -49,6 +62,6 @@ imgurl = [
   Place.create!(title: title[i], address: address[i], imgurl: imgurl[i])
 end
 
-10.times do
-  User.create!(name: Faker::Name.name, username: Faker::App.name.gsub(' ', ''), email: 'user@example.com', password: 'password')
+users.each do |name|
+  User.create!(name: name, username: Faker::App.name.gsub(' ', ''), email: "#{name}@example.com", password: 'password')
 end
