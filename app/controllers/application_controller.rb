@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
-  def current_user
-    User.find_by(id: session[:auth_token])
+  def current_user(token)
+    User.find_by(auth_token: token )
   end
 
   def user_logged_in?
