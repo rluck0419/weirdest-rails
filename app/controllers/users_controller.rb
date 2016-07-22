@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   def index
-    render json: { users: User.order(:id) }
+    render json: { users: User.order(:id).to_json(except: [:auth_token, :password_digest]) }
   end
 
   def show
     if User.exists?(params[:id])
-      render json: { user: set_user }
+      render json: { user: set_user.to_json(except: [:auth_token, :password_digest]) }
     else
       render json: { message: "User not found.", status: 404 }
     end
