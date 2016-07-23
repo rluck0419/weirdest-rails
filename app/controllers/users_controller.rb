@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      session[:user_id] = user.id
       render json: { user: user, status: 201 }
     else
       render json: user.errors, status: 422
@@ -57,6 +56,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password_digest)
+    params.require(:user).permit(:name, :username, :email, :password)
   end
 end
