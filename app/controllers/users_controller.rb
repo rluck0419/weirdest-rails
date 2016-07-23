@@ -12,17 +12,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    if authenticate_token?(params[:auth_token])
-      user = User.new(user_params)
+    user = User.new(user_params)
 
-      if user.save
-        session[:user_id] = user.id
-        render json: { user: user, status: 201 }
-      else
-        render json: user.errors, status: 422
-      end
+    if user.save
+      session[:user_id] = user.id
+      render json: { user: user, status: 201 }
     else
-      render json: { message: "You must be logged in to do that", status: 401}
+      render json: user.errors, status: 422
     end
   end
 

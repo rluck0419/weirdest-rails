@@ -32,6 +32,7 @@ https://limitless-falls-88798.herokuapp.com/login
 ```
 login can be reached here (POST) - it will either give you the authentication token, or notify you if invalid email/password
 
-
-User editing/creating/deleting may not work yet (POST, PUT, DELETE)
-However, all actions work for Places
+```
+https://limitless-falls-88798.herokuapp.com/votes
+```
+votes can be created by this url (POST) - A user can only cast one vote per place (votes will have a user_id and a place_id)
