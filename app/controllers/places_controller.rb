@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   def index
-    render json: Place.order(:id).to_json(include: :votes, methods: :vote_count)
+    render json: Place.order(:id).to_json(include: [:votes, :user], methods: :vote_count)
   end
 
   def show
