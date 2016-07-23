@@ -12,29 +12,46 @@ class PlacesController < ApplicationController
   end
 
   def create
-    place = Place.new(place_params)
-    if place.save
-      render json: { place: place }
+    if authenticate_token?(params[:auth_token])
+      place = Place.new(place_params)
+      if place.save
+        render json: { place: place }
+      else
+        render json: { status: 404 }
+      end
     else
-      render json: { status: 404 }
+      render json: { message: "You must be logged in to do that", status: 401 }
     end
   end
 
   def update
     place = Place.find(params[:id])
-    if place.update(place_params)
-      render json: { place: place }
+    if place
+      if authenticate_ownership?(params[:auth_token], place)
+        if place.update(place_params)
+          render json: { place: place }
+        else
+          render json: { status: 404 }
+        end
+      else
+        render json: { message: "You must be logged in to do that", status: 401 }
+      end
     else
-      render json: { status: 404 }
+      render json: { message: "Place does not exist", status: 401 }
     end
   end
 
   def destroy
-    if Place.exists?(params[:id])
-      Place.destroy(params[:id])
-      render json: { message: "Place was successfully deleted" }
+    place = Place.find(params[:id])
+    if place
+      if authenticate_ownership?(params[:auth_token], place)
+        Place.destroy(params[:id])
+        render json: { message: "Place was successfully deleted" }
+      else
+        render json: { message: "You must have created this place to delete it", status: 404 }
+      end
     else
-      render json: { status: 404 }
+      render json: { message: "Place does not exist", status: 401 }
     end
   end
 
