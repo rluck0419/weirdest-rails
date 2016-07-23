@@ -12,6 +12,7 @@ class VotesController < ApplicationController
   end
 
   def create
+    binding.pry
     if authenticate_token?(params[:auth_token])
       vote = Vote.new(vote_params)
       if vote.save
