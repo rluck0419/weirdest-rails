@@ -1,5 +1,6 @@
 class Place < ApplicationRecord
-  has_many :votes
+  has_many :votes, dependent: :destroy
+  belongs_to :user
 
   validates :title, presence: true
   validates :address, presence: true
