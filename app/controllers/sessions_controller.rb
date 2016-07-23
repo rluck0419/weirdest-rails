@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  def authenticate
+  def login
     # Does the authentication process
     user = User.find_by(email: params[:email])
     if user.present? && user.authenticate(params.fetch(:password))

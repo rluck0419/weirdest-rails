@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'places#index'
 
-  post '/login' => 'sessions#authenticate', as: :login
+  post '/login' => 'sessions#login', as: :login
 end
