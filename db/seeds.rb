@@ -48,7 +48,7 @@ users = %w(
 imgurl = [
   'http://drinks.seriouseats.com/images/2012/08/20120809-218035-midnight-cowboy-austin-steven-robbins.jpg',
   'http://whitehotphotoblog.com/wp-content/uploads/2010/09/toy_joy_03_white_hot_phoenix.jpg',
-  'http://eecue.com/i/Cathedral-of-Junk-Doorway-eecue_31407_hbwe_l.jpg',
+  'https://c6.staticflickr.com/6/5828/23595715565_f5681d7479_b.jpg',
   'http://365thingsaustin.com/wp-content/uploads/2012/04/photo-158.jpg',
   'http://media6.trover.com/T/545197acd809d86342000211/fixedw_large_4x.jpg',
   'http://www.transcend-me.com/wp-content/uploads/2013/04/IMG_1933.jpg',
@@ -58,10 +58,7 @@ imgurl = [
   'http://c0056906.cdn2.cloudfiles.rackspacecloud.com/633293.jpg'
 ]
 
-10.times do |i|
-  Place.create!(title: title[i], address: address[i], imgurl: imgurl[i])
-end
-
-users.each do |name|
-  User.create!(name: name, username: Faker::App.name.gsub(' ', ''), email: "#{name}@example.com", password: 'password')
+users.each_with_index do |name, i|
+  user = User.create!(name: name, username: Faker::App.name.gsub(' ', ''), email: "#{name}@example.com", password: 'password')
+  Place.create!(user_id: user.id, title: title[i], address: address[i], imgurl: imgurl[i])
 end

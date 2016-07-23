@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_validation :set_auth_token
+  has_many :places, dependent: :destroy
 
   validates :name, presence: true
   validates :username, presence: true

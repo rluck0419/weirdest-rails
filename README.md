@@ -27,6 +27,11 @@ https://limitless-falls-88798.herokuapp.com/users/1
 Each user can be reached via '/users/#' (GET)
 Users can also be edited (PUT) and deleted (DELETE) from this URL
 
+```
+https://limitless-falls-88798.herokuapp.com/login
+```
+login can be reached here (POST) - it will either give you the authentication token, or notify you if invalid email/password
+
 
 User editing/creating/deleting may not work yet (POST, PUT, DELETE)
 However, all actions work for Places
