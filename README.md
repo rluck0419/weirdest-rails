@@ -1,5 +1,7 @@
 # README
 
+This api is created for the weirdest places in austin, where users can submit new places, and submit votes for their favorite places. Users must be logged in to submit places or place votes. Below are the URLs, listed with brief descriptions and example JSON responses.
+
 ```
 https://limitless-falls-88798.herokuapp.com/
 https://limitless-falls-88798.herokuapp.com/places
